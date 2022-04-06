@@ -144,8 +144,12 @@ while cap.isOpened():
 
     last_command_time += timer.GetDelta()
     if LastGesture == Gestures.CLOSED:
-        tello.send_command('stop')
-        last_command = 'stop'
+        if telloCommand is not None:
+            telloCommand = telloCommand.split(' ')[1:]
+        else:
+            telloCommand = ['']
+        last_command = 'stop ' + ' '.join(telloCommand)
+        tello.send_command(last_command)
     elif LastGesture == Gestures.OPEN and last_command_time > time_between_direction_updates and telloCommand is not None:
         last_command = telloCommand
         tello.send_command(telloCommand)

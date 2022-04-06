@@ -27,24 +27,24 @@ class Tello:
 
         if 'continue' != command:
             self.last_command = command
-        self.update_plot()
+        #self.update_plot()
 
     def update_plot(self):
         np_arr = np.array(self.all_pos)
         print(np_arr.shape)
         self.ax.clear()
         self.ax.set_xlabel('X')
-        self.ax.set_ylabel('Y')
-        self.ax.set_zlabel('Z')
-        self.ax.plot3D(np_arr[:,0], np_arr[:,1], np_arr[:,2])
+        self.ax.set_ylabel('Z')
+        self.ax.set_zlabel('Y')
+        self.ax.plot3D(-np_arr[:,0], np_arr[:,2], np_arr[:,1])
         plt.draw()
-        plt.pause(0.00001)
+        #plt.pause(0.00001)
 
     def plot(self):
         np_arr = np.array(self.all_pos)
         plt.ioff()
         self.ax.set_xlabel('X')
-        self.ax.set_ylabel('Y')
-        self.ax.set_zlabel('Z')
-        self.ax.plot3D(np_arr[:,0], np_arr[:,1], np_arr[:,2])
+        self.ax.set_ylabel('Z')
+        self.ax.set_zlabel('Y')
+        self.ax.plot3D(-np_arr[:,0], np_arr[:,2], np_arr[:,1])
         plt.show()
