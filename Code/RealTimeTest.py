@@ -68,8 +68,8 @@ while cap.isOpened() and ControlHand is None:
             cv2.putText(original_image, str(Gestures(gest[0])), pos, cv2.FONT_HERSHEY_SIMPLEX, 2, color, 5)
 
         time_between_frames = timer.GetDelta()
-        GestSeries['Right'] += [time_between_frames if CurGest['Right'] == Gestures.OPEN else 0.0]
-        GestSeries['Left'] +=  [time_between_frames if CurGest['Left'] == Gestures.OPEN else 0.0]
+        GestSeries['Right'] += [time_between_frames if CurGest['Right'] == Gestures.CLOSED else 0.0]
+        GestSeries['Left'] +=  [time_between_frames if CurGest['Left'] == Gestures.CLOSED else 0.0]
         GestSeries['Total'] += [time_between_frames]
 
     ## Maintain a buffer of the last X second of gesture time deltas
@@ -81,12 +81,12 @@ while cap.isOpened() and ControlHand is None:
     GestSeries['Total'] = GestSeries['Total'][crop_indx:]
 
     ## Sum over time-frames
-    RightOpen = sum(GestSeries['Right'])
-    LeftOpen = sum(GestSeries['Left'])
+    RightClosed = sum(GestSeries['Right'])
+    LeftClosed = sum(GestSeries['Left'])
     TotalTime = max(sum(GestSeries['Total']), time_buffer_size)
-    if  RightOpen > (TotalTime / 2) and LeftOpen < (TotalTime / 4):
+    if  RightClosed > (TotalTime / 2) and LeftClosed < (TotalTime / 4):
         ControlHand = 'Right'
-    elif LeftOpen > (TotalTime / 2) and RightOpen < (TotalTime / 4):
+    elif LeftClosed > (TotalTime / 2) and RightClosed < (TotalTime / 4):
         ControlHand = 'Left'
 
     cv2.imshow("Hand",original_image)
