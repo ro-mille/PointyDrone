@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import math
+from tello import Tello as drone
 
 class Tello:
     def __init__(self):
@@ -11,9 +12,17 @@ class Tello:
         plt.ion()
         plt.title('Dummy Drone Path')
         self.ax = plt.axes(projection='3d')
-
+        self.drone = drone()
 
     def send_command(self, command):
+        print('Tello Received: {}'.format(command))
+
+        if 'continue' != command or not 'stop' in command:
+            self.drone.send_command(command)
+
+            
+
+    def send_command_droneless(self, command):
         print('Tello Received: {}'.format(command))
         if command=='takeoff':
             self.cur_pos[1] += 100

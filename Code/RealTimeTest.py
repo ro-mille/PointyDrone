@@ -1,6 +1,5 @@
 import mediapipe as mp
 import cv2
-
 import numpy as np
 
 from tello_dummy import Tello
@@ -13,7 +12,7 @@ gest_detect = GestureDetector()
 direction_detect = DirectionDetector()
 
 tello = Tello()
-tello.send_command("takeoff")
+
 
 cap = cv2.VideoCapture(0)
 
@@ -103,7 +102,7 @@ LastGesture = Gestures.NONE
 timer.Restart()
 time_between_direction_updates = timer.one_second*0.1
 last_command_time = time_between_direction_updates
-
+#tello.send_command("takeoff")
 while cap.isOpened():
     success, original_image = cap.read()
     if not success:
@@ -140,7 +139,7 @@ while cap.isOpened():
         if direction_idx < len(hand_landmarks):
             handLMs = hand_landmarks[direction_idx]
             direction_detect.drawOverHands(original_image, handLMs)
-            telloCommand = direction_detect.GetCommand(handLMs)
+            telloCommand = direction_detect.GetCommand(handLMs,w,h,image)
 
     last_command_time += timer.GetDelta()
     if LastGesture == Gestures.CLOSED:
@@ -149,10 +148,10 @@ while cap.isOpened():
         else:
             telloCommand = ['']
         last_command = 'stop ' + ' '.join(telloCommand)
-        tello.send_command(last_command)
+        #tello.send_command(last_command)
     elif LastGesture == Gestures.OPEN and last_command_time > time_between_direction_updates and telloCommand is not None:
         last_command = telloCommand
-        tello.send_command(telloCommand)
+        #tello.send_command(telloCommand)
         last_command_time = 0
     elif LastGesture == Gestures.OPEN:
         tello.send_command('continue')
