@@ -1,10 +1,14 @@
 # PointyDrone
 
-### Requirements:
-OpenCV  
+### Drone Control Requirements:
+RealSense  
 TensorflowV2  
-MediaPipe   
+OpenCV  
+MediaPipe  
 Numpy  
-Matplotlib
-#### Optional (Replacement for tello_dummy.py)
-Tello
+Tello  
+
+### Gesture Classifier:  
+TensorflowV2  
+gdown  
+
