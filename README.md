@@ -12,11 +12,11 @@
 #### Install dependences:  
 `python -m pip install -r requirements.txt`  
 Running the command `pip list` should list the following packages:  
-gdown
-tensorflow
-numpy
-mediapipe
-opencv
+- gdown
+- tensorflow (version 2.X)
+- numpy
+- mediapipe
+- opencv
 
 #### Tello Python API:
 Someone fill this please (if is just a simple pip install feel free to add it to the requirements.txt file)
