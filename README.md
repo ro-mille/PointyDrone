@@ -7,9 +7,12 @@
 `python3 -m venv DroneEnv` 
  
 #### Start python environment:  
-`DroneEnv/Scripts/activate`
+`DroneEnv\Scripts\activate`
 
 #### Install dependences:
+Make sure your pip version is up to date. 
+If you are unsure run `python -m pip install --upgrade pip`.  
+
 `python -m pip install -r requirements.txt`  
 Running the command `pip list` should list the following packages:
 - gdown
@@ -30,9 +33,9 @@ Someone fill this please (if is just a simple pip install feel free to add it to
 Someone fill this please  
 
 ### Running Code:
-Navigate to the top level repository folder (<Repo Download Location/PointyDrone>)  
+Navigate to the top level repository folder (<Repo Download Location\PointyDrone>)  
 With all the dependences installed and the RealSense camera connected to your computer run the command:  
-`python3 DroneControl/realTimeRealsense.py`  
+`python3 DroneControl\realTimeRealsense.py`  
 
 A window showing the RealSense color camera feed should appear.
 Present the start/stop hand in the closed position for around 2 seconds.
