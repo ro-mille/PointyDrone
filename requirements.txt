@@ -3,3 +3,4 @@ mediapipe
 opencv-python
 numpy
 gdown
+pyrealsense2
