@@ -9,9 +9,9 @@
 #### Start python environment:  
 `DroneEnv/Scripts/activate`
 
-#### Install dependences:  
+#### Install dependences:
 `python -m pip install -r requirements.txt`  
-Running the command `pip list` should list the following packages:  
+Running the command `pip list` should list the following packages:
 - gdown
 - tensorflow (version 2.X)
 - numpy
@@ -38,6 +38,7 @@ A window showing the RealSense color camera feed should appear.
 Present the start/stop hand in the closed position for around 2 seconds.
 Once a start/stop hand is determined use your other hand to direct the drone's direction of movement.
 The drone will move when presenting an open palm and stop with a closed hand.
+Hit <Ctrl>-C to quit the program.
 
 ### Gesture Classifier:
 The gesture classifier can be retrained using the same data. To retrain run:
