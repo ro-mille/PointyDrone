@@ -1,0 +1,4 @@
+command
+takeoff
+delay 1
+land
