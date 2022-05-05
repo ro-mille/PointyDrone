@@ -20,17 +20,18 @@ Running the command `pip list` should list the following packages:
 - numpy
 - mediapipe
 - opencv
+- pyrealsense2
 
 #### Tello Python API:
-Someone fill this please (if is just a simple pip install feel free to add it to the requirements.txt file)
-
-#### RealSense Python API:
-Someone fill this please (if is just a simple pip install feel free to add it to the requirements.txt file)
-
+All Tello API files are included in the repository as:
+tello.py
+stats.py
 
 ## Drone Control  
 ### Connecting to drone:  
-Someone fill this please  
+1. Press the drone power button
+2. Connect to the drone's wifi network on the system you are using to run the code (this may take a while/many tries to connect)
+3. Run the code once connected
 
 ### Running Code:
 Navigate to the top level repository folder (<Repo Download Location\PointyDrone>)  
