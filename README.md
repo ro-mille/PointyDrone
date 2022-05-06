@@ -1,6 +1,7 @@
 # PointyDrone
 
-## Installation
+## Installation  
+### Only tested using Windows  
 #### Download repo.  
 
 #### Create start python environment (Windows Command Line):  
@@ -29,12 +30,12 @@ stats.py
 
 ## Drone Control  
 ### Connecting to drone:  
-Press the drone power button
-Connect to the drone's wifi network on the system you are using to run the code (this may take a while/many tries to connect)
+Press the drone power button  
+Connect to the drone's wifi network on the system you are using to run the code (this may take a while/many tries to connect)  
 Navigate to the top level repository folder (<Repo Download Location\PointyDrone>)  
-Once connected run the takeoff and land test command (this will launch the drone and land after 1 second):
-` \python3 DroneControl\tello_test.py command.txt`
-4. After running the test the drone is connected and initialized, you can now run the project code
+Once connected run the takeoff and land test command (this will launch the drone and land after 1 second):  
+` \python3 DroneControl\tello_test.py command.txt`  
+After running the test the drone is connected and initialized, you can now run the project code.  
 
 ### Running Code:
 Navigate to the top level repository folder (<Repo Download Location\PointyDrone>)  

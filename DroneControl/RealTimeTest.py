@@ -2,17 +2,22 @@ import mediapipe as mp
 import cv2
 import numpy as np
 
-from tello_dummy import Tello
+import tello_dummy 
 from Gestures import Gestures, GestureDetector
 from Director import DirectionDetector
-from Timer import Timer
+
+import os
+if os.name == 'nt':
+    from Timer import WindowsTimer as Timer
+elif os.name == 'posix':
+    from Timer import LinuxTimer as Timer
+else:
+    print('Unknown OS')
+    exit(0)
 
 hands = mp.solutions.hands.Hands()
 gest_detect = GestureDetector()
 direction_detect = DirectionDetector()
-
-tello = Tello()
-
 
 cap = cv2.VideoCapture(0)
 
@@ -102,7 +107,6 @@ LastGesture = Gestures.NONE
 timer.Restart()
 time_between_direction_updates = timer.one_second*0.1
 last_command_time = time_between_direction_updates
-#tello.send_command("takeoff")
 while cap.isOpened():
     success, original_image = cap.read()
     if not success:
@@ -139,7 +143,10 @@ while cap.isOpened():
         if direction_idx < len(hand_landmarks):
             handLMs = hand_landmarks[direction_idx]
             direction_detect.drawOverHands(original_image, handLMs)
-            telloCommand = direction_detect.GetCommand(handLMs,w,h,image)
+            class depth_image_dummy:
+                def get_distance(a, b):
+                    return 0
+            telloCommand = direction_detect.GetCommand(handLMs,w,h,depth_image_dummy)
 
     last_command_time += timer.GetDelta()
     if LastGesture == Gestures.CLOSED:
@@ -148,13 +155,13 @@ while cap.isOpened():
         else:
             telloCommand = ['']
         last_command = 'stop ' + ' '.join(telloCommand)
-        #tello.send_command(last_command)
+        print(last_command)
     elif LastGesture == Gestures.OPEN and last_command_time > time_between_direction_updates and telloCommand is not None:
         last_command = telloCommand
-        #tello.send_command(telloCommand)
+        print(telloCommand)
         last_command_time = 0
     elif LastGesture == Gestures.OPEN:
-        tello.send_command('continue')
+        print('continue')
 
     cv2.putText(original_image, last_command, (0, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 4)
     frame_count += 1
@@ -165,11 +172,9 @@ while cap.isOpened():
     if (cv2.waitKey(1) & 0xFF) == 27:
         break
 
-tello.send_command('stop')
 cap.release()
 if write_video and writer is not None:
     writer.release()
 
-tello.plot()
 
 

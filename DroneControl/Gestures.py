@@ -15,7 +15,7 @@ class GestureDetector():
     def __init__(self):
         # Model3 -> (127, 127)
         # Model4 -> (32, 32)
-        self.model = keras.models.load_model("GestureModel")
+        self.model = keras.models.load_model("DroneControl\\GestureModel")
         self.hand_img_size = (32, 32)
         self.model.summary()
 

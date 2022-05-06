@@ -7,7 +7,15 @@ import numpy as np
 from tello_dummy import Tello
 from Gestures import Gestures, GestureDetector
 from Director import DirectionDetector
-from Timer import Timer
+
+import os
+if os.name == 'nt':
+    from Timer import WindowsTimer as Timer
+elif os.name == 'posix':
+    from Timer import LinuxTimer as Timer
+else:
+    print('Unknown OS')
+    exit(0)
 
 hands = mp.solutions.hands.Hands()
 gest_detect = GestureDetector()
